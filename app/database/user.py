@@ -65,3 +65,16 @@ def update(pk, user_data):
     cursor.execute(statement, value_tuple)
     cursor.commit()
     cursor.close()
+
+
+def deactivate(pk):
+    cursor = get_db()
+    statement = """
+    update user
+    SET active = 0
+    WHERE id = ?
+    """
+
+    cursor.execute(statement, (pk,))
+    cursor.commit()
+    cursor.close()
